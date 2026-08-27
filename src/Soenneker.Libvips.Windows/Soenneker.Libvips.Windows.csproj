@@ -40,8 +40,8 @@
         <None Include="..\..\README.md" Pack="true" PackagePath="\" />
         <None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
         <None Include="..\..\icon.png" Pack="true" PackagePath="\" />
-        <None Include="Resources\win-x64\libvips\lib\libvips-42.dll" Pack="true" PackagePath="runtimes/win-x64/native/" />
-        <None Include="Resources\win-x64\libvips\THIRD-PARTY-NOTICES.md" Pack="true" PackagePath="" />
-        <None Include="Resources\win-x64\libvips\versions.json" Pack="true" PackagePath="" />
+        <None Include="Resources\win-x64\libvips\lib\libvips-42.dll" Condition="Exists('Resources\win-x64\libvips\lib\libvips-42.dll')" Pack="true" PackagePath="runtimes/win-x64/native/" />
+        <None Include="Resources\win-x64\libvips\THIRD-PARTY-NOTICES.md" Condition="Exists('Resources\win-x64\libvips\THIRD-PARTY-NOTICES.md')" Pack="true" PackagePath="" />
+        <None Include="Resources\win-x64\libvips\versions.json" Condition="Exists('Resources\win-x64\libvips\versions.json')" Pack="true" PackagePath="" />
     </ItemGroup>
 </Project>

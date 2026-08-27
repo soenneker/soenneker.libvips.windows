@@ -4,7 +4,7 @@
 [![](https://img.shields.io/github/actions/workflow/status/soenneker/soenneker.libvips.windows/codeql.yml?style=for-the-badge)](https://github.com/soenneker/soenneker.libvips.windows/actions/workflows/codeql.yml)
 
 # ![](https://user-images.githubusercontent.com/4441470/224455560-91ed3ee7-f510-4041-a8d2-3fc093025112.png) Soenneker.Libvips.Windows
-### Provides the native libvips shared library for Windows x64.
+### Provides a bundled libvips command-line distribution for Windows x64.
 
 ## Installation
 
@@ -12,6 +12,6 @@
 dotnet add package Soenneker.Libvips.Windows
 ```
 
-The package places `libvips-42.dll` under `runtimes/win-x64/native`, so .NET selects and copies it for Windows x64 applications automatically.
+The package copies the distribution to `Resources/win-x64/libvips`, including `bin/vips.exe`, `bin/vipsheader.exe`, and their runtime dependencies.
 
-The binary comes from [kleisauke/libvips-packaging](https://github.com/kleisauke/libvips-packaging). Third-party notices and exact component versions are included in the package.
+The distribution comes from [libvips/build-win64-mxe](https://github.com/libvips/build-win64-mxe).

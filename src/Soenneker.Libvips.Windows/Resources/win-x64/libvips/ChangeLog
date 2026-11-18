@@ -26,7 +26,7 @@ date-tbd 8.19.0
 - add VIPS_MEMCPY() [kleisauke]
 - heifload: allow mif2 and mif3 "brand" images eg. mini box [lovell]
 - add vips_scRGB2CICP [mertalev]
-- add VIPS_UHDR_TO_SCRGB
+- colour: map hdr reference white to scrgb 1.0 [mertalev]
 - add uchar options to premultiply and unpremultiply [jcupitt]
 - vipsthumbnail: add '@' modifier for size to pixel count
 - dcrawload: attach preview jpeg as metadata
@@ -66,8 +66,15 @@ date-tbd 8.19.0
 - tiffsave: disable tiling for LABQ JPEG images
 - add vips_image_get_blob_value()
 - dzsave: reject imagename containing path separator [lovell]
+- heifsave: force identity matrix for lossless cicp [mertalev]
+- add VIPS_FOREIGN_SAVEABLE_CICP, SAVEABLE_scRGB
+- rename uhdr2scRGB as UHDR2scRGB
+- radload: support packed XYZE images [fuzzyrichie]
+- colour: add built-in Linear Rec.2020 profile [chrisabra]
+- dcrawload: load as CICP tagged Linear Rec.2020 [chrisabra]
+- dcrawload: add auto-brightness option [chrisabra]
 
-tdb 8.18.8
+tbd 8.18.8
 
 - jxlsave: don't save bad profiles [Lumaraf]
 - invertlut: prevent possible integer overflow [Shubham Raj]
@@ -83,8 +90,15 @@ tdb 8.18.8
 - tiffload: limit total height [JiHeun]
 - sink_screen: move render_free() inside the global render lock [octopus-kkk]
 - icc_transform: copy blob, not raw pointer [chehov]
-- heifload, pdfload, webpload, gifload: check total height in multipage images
+- heifload, pdfload, webpload, gifload, jxlload: check total multipage height
 - libnsgif: update from upstream
+- pngload: allow PNG images containing invalid CMF [lovell]
+- heifload: raise security limits on references, again
+- tiffload: missing free on error path [AploSec]
+- text: prevent fontconfig init race condition [lovell]
+- ensure image history is restored on load [fuzzyrichie]
+- dbuf: fix return value of `vips_dbuf_writef()` [fuzzyrichie]
+- tiffsave: fix IPTC write with libtiff >= 4.2.0 [fuzzyrichie]
 
 20/9/26 8.18.7
 

@@ -26,6 +26,7 @@ vips_LabS2LabQ
 vips_Oklab2Oklch
 vips_Oklab2XYZ
 vips_Oklch2Oklab
+vips_UHDR2scRGB
 vips_XYZ2CMYK
 vips_XYZ2Lab
 vips_XYZ2Oklab
@@ -39,6 +40,10 @@ vips__filename_split8
 vips__get_bytes
 vips__has_extension_block
 vips__image_get_cicp
+vips__image_get_clli
+vips__image_is_cicp
+vips__image_is_cicp_hdr
+vips__image_is_clli
 vips__open
 vips__premultiplied_bgra2rgba
 vips__read_extension_block

@@ -93,11 +93,6 @@ extern "C" {
 #define VIPS_D3250_Y0 (100.0)
 #define VIPS_D3250_Z0 (45.8501)
 
-/* Rescale from libuhdr's linear convention (1.0 = 203 nits, the ITU-R
- * BT.2408 SDR reference white) to scRGB (1.0 = 80 nits).
- */
-#define VIPS_UHDR_TO_SCRGB (203.0f / 80.0f)
-
 /* Note: constants align with those defined in lcms2.h, except for
  * VIPS_INTENT_AUTO, which is libvips-specific.
  */
@@ -278,8 +273,16 @@ VIPS_API
 int vips_Oklab2Oklch(VipsImage *in, VipsImage **out, ...)
 	G_GNUC_NULL_TERMINATED;
 
-VIPS_API
+#ifndef __GI_SCANNER__
+
+VIPS_DEPRECATED_FOR(vips_UHDR2scRGB)
 int vips_uhdr2scRGB(VipsImage *in, VipsImage **out, ...)
+	G_GNUC_NULL_TERMINATED;
+
+#endif /* !__GI_SCANNER__ */
+
+VIPS_API
+int vips_UHDR2scRGB(VipsImage *in, VipsImage **out, ...)
 	G_GNUC_NULL_TERMINATED;
 
 VIPS_API

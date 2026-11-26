@@ -9,7 +9,7 @@ cachedir=LOCAL_APPDATA_FONTCONFIG_CACHE
 
 Name: Fontconfig
 Description: Font configuration and customization library
-Version: 2.18.3
+Version: 2.18.4
 Requires: freetype2 >=  21.0.15, expat
 Libs: -L${libdir} -lfontconfig -lm
 Cflags: -I${includedir}

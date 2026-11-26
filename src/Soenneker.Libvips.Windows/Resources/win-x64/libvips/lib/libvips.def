@@ -37,6 +37,7 @@ vips__argument_get_instance
 vips__exif_parse
 vips__file_read
 vips__filename_split8
+vips__find_rightmost_brackets
 vips__get_bytes
 vips__has_extension_block
 vips__image_get_cicp
@@ -55,6 +56,10 @@ vips__substitute
 vips__substitutec
 vips__temp_name
 vips__token_get
+vips__token_must
+vips__token_need
+vips__token_segment
+vips__token_segment_need
 vips__vector_to_ink
 vips__win32_terminate
 vips__worker_cond_wait

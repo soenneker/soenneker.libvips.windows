@@ -4,7 +4,7 @@ libdir=${prefix}/lib
 
 Name: harfbuzz
 Description: HarfBuzz text shaping library
-Version: 15.1.0
+Version: 15.2.0
 Requires: freetype2 >=  20.0.14, glib-2.0 >=  2.30.0
 Libs: -L${libdir} -lharfbuzz -lm
 Cflags: -I${includedir}/harfbuzz

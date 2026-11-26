@@ -4,7 +4,7 @@ libdir=${prefix}/lib
 
 Name: harfbuzz-cairo
 Description: HarfBuzz cairo support
-Version: 15.1.0
-Requires: freetype2 >=  20.0.14, glib-2.0 >=  2.30.0, cairo >=  1.10.0, harfbuzz =  15.1.0
+Version: 15.2.0
+Requires: freetype2 >=  20.0.14, glib-2.0 >=  2.30.0, cairo >=  1.10.0, harfbuzz =  15.2.0
 Libs: -L${libdir} -lharfbuzz-cairo -lm -lharfbuzz
 Cflags: -I${includedir}/harfbuzz

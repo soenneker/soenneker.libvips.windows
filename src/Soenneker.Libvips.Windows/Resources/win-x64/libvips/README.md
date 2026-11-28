@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/libvips/libvips/workflows/CI/badge.svg)](https://github.com/libvips/libvips/actions)
 [![Fuzzing Status](https://oss-fuzz-build-logs.storage.googleapis.com/badges/libvips.svg)](https://issues.oss-fuzz.com/issues?q=is:open%20project:libvips)
+[![Coverity Status](https://scan.coverity.com/projects/6503/badge.svg)](https://scan.coverity.com/projects/jcupitt-libvips)
 [![Gitter](https://badges.gitter.im/libvips/devchat.svg)](https://gitter.im/libvips/devchat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 # Introduction
@@ -46,7 +47,6 @@ Full bindings are available for:
 | Elixir | [vix](https://github.com/akash-akya/vix) |
 | Java | [vips-ffm](https://github.com/lopcode/vips-ffm) |
 | Nim | [libvips-nim](https://github.com/openpeeps/libvips-nim) |
-| Rust | [vips-rs](https://github.com/houseme/vips-rs) |
 
 libvips is used as an image processing engine by:
 
@@ -60,10 +60,9 @@ libvips is used as an image processing engine by:
 | [Ruby on Rails](https://edgeguides.rubyonrails.org/active_storage_overview.html) |
 | [CarrierWave](https://github.com/carrierwaveuploader/carrierwave#using-vips) |
 | [MediaWiki](https://www.mediawiki.org/wiki/Extension:Thumbro) |
-| [Hokusai (on Swift)](https://github.com/ivantokar/hokusai) |
 
 and others. The official libvips GUI is
-[nip4](https://github.com/libvips/nip4), a strange combination of a
+[nip2](https://github.com/libvips/nip2), a strange combination of a
 spreadsheet and a photo editor.
 
 # Install

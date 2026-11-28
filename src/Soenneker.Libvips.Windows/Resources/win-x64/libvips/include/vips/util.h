@@ -64,34 +64,6 @@ extern "C" {
 #define VIPS_ABS(V) (((V) >= 0) ? (V) : -(V))
 #define VIPS_FABS(V) fabs((V)) VIPS_DEPRECATED_MACRO_FOR(fabs)
 
-/* Inline fast paths for small memcpy() operations.
- *
- * N must not have side effects (e.g. N++).
- */
-#ifdef __OPTIMIZE__
-#define VIPS_MEMCPY(Q, P, N) \
-	G_STMT_START \
-	{ \
-		switch (N) { \
-		case 8: memcpy((Q), (P), 8); break; \
-		case 7: memcpy((Q), (P), 7); break; \
-		case 6: memcpy((Q), (P), 6); break; \
-		case 5: memcpy((Q), (P), 5); break; \
-		case 4: memcpy((Q), (P), 4); break; \
-		case 3: memcpy((Q), (P), 3); break; \
-		case 2: memcpy((Q), (P), 2); break; \
-		case 1: memcpy((Q), (P), 1); break; \
-		case 0: break; \
-		default: memcpy((Q), (P), (N)); break; \
-		} \
-	} \
-	G_STMT_END
-#else
-/* Unoptimized version: always call the memcpy() function.
- */
-#define VIPS_MEMCPY(Q, P, N) memcpy((Q), (P), (N))
-#endif
-
 // is something (eg. a pointer) N aligned
 #define VIPS_ALIGNED(P, N) ((((guint64) (P)) & ((N) - 1)) == 0)
 
@@ -354,24 +326,10 @@ typedef enum {
 
 #ifndef __GI_SCANNER__
 
-// used in some modules
+// we expose this one in the API for testing
 VIPS_API
 const char *vips__token_get(const char *buffer,
 	VipsToken *token, char *string, int size);
-VIPS_API
-const char *vips__token_must(const char *buffer, VipsToken *token,
-	char *string, int size);
-VIPS_API
-const char *vips__token_need(const char *buffer, VipsToken need_token,
-	char *string, int size);
-VIPS_API
-const char *vips__token_segment(const char *p, VipsToken *token,
-	char *string, int size);
-VIPS_API
-const char *vips__token_segment_need(const char *p, VipsToken need_token,
-	char *string, int size);
-VIPS_API
-const char *vips__find_rightmost_brackets(const char *p);
 
 #endif /* !__GI_SCANNER__ */
 

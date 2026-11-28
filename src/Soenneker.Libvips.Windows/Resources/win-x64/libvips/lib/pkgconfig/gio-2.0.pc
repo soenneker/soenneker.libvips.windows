@@ -18,7 +18,7 @@ gsettings=${bindir}/gsettings
 
 Name: GIO
 Description: glib I/O library
-Version: 2.90.1
+Version: 2.91.0
 Requires: glib-2.0, gobject-2.0, gmodule-no-export-2.0, zlib
-Libs: -L${libdir} -lgio-2.0 -lintl -lshlwapi -ldnsapi -liphlpapi -lws2_32
+Libs: -L${libdir} -lgio-2.0 -lintl -lshlwapi -ldnsapi -lruntimeobject -liphlpapi -lws2_32
 Cflags: -I${includedir}

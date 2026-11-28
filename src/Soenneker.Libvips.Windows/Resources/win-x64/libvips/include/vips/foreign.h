@@ -308,27 +308,12 @@ void vips_foreign_load_invalidate(VipsImage *image);
 		VIPS_TYPE_FOREIGN_SAVE, VipsForeignSaveClass))
 
 /**
- * VIPS_FOREIGN_SAVEABLE_ALL_MASK:
- *
- * A mask for all [flags@ForeignSaveable] bits.
- */
-#define VIPS_FOREIGN_SAVEABLE_ALL_MASK \
-	(VIPS_FOREIGN_SAVEABLE_MONO | \
-		VIPS_FOREIGN_SAVEABLE_RGB | \
-		VIPS_FOREIGN_SAVEABLE_CMYK | \
-		VIPS_FOREIGN_SAVEABLE_ALPHA | \
-		VIPS_FOREIGN_SAVEABLE_CICP | \
-		VIPS_FOREIGN_SAVEABLE_scRGB)
-
-/**
  * VipsForeignSaveable:
- * @VIPS_FOREIGN_SAVEABLE_ANY: does anything, no preprocessing (eg. TIFF)
+ * @VIPS_FOREIGN_SAVEABLE_ANY: saver supports everything (eg. TIFF)
  * @VIPS_FOREIGN_SAVEABLE_MONO: 1 band
  * @VIPS_FOREIGN_SAVEABLE_RGB: 3 bands
  * @VIPS_FOREIGN_SAVEABLE_CMYK: 4 bands
  * @VIPS_FOREIGN_SAVEABLE_ALPHA: an extra band
- * @VIPS_FOREIGN_SAVEABLE_CICP: can save CICP images
- * @VIPS_FOREIGN_SAVEABLE_scRGB: can save scRGB images
  *
  * The set of image types supported by a saver.
  *
@@ -341,21 +326,12 @@ typedef enum /*< flags >*/ {
 	VIPS_FOREIGN_SAVEABLE_RGB = 2,
 	VIPS_FOREIGN_SAVEABLE_CMYK = 4,
 	VIPS_FOREIGN_SAVEABLE_ALPHA = 8,
-	VIPS_FOREIGN_SAVEABLE_CICP = 16,
-	VIPS_FOREIGN_SAVEABLE_scRGB = 32,
 
-	VIPS_FOREIGN_SAVEABLE_ALL = VIPS_FOREIGN_SAVEABLE_ALL_MASK
+	VIPS_FOREIGN_SAVEABLE_ALL = (VIPS_FOREIGN_SAVEABLE_MONO |
+		VIPS_FOREIGN_SAVEABLE_RGB |
+		VIPS_FOREIGN_SAVEABLE_CMYK |
+		VIPS_FOREIGN_SAVEABLE_ALPHA)
 } VipsForeignSaveable;
-
-/**
- * VIPS_FOREIGN_CODING_ALL_MASK:
- *
- * A mask for all [flags@ForeignCoding] bits.
- */
-#define VIPS_FOREIGN_CODING_ALL_MASK \
-	(VIPS_FOREIGN_CODING_NONE | \
-		VIPS_FOREIGN_CODING_LABQ | \
-		VIPS_FOREIGN_CODING_RAD)
 
 /**
  * VipsForeignCoding:
@@ -374,21 +350,10 @@ typedef enum /*< flags >*/ {
 	VIPS_FOREIGN_CODING_LABQ = 1 << 1,
 	VIPS_FOREIGN_CODING_RAD = 1 << 2,
 
-	VIPS_FOREIGN_CODING_ALL = VIPS_FOREIGN_CODING_ALL_MASK
+	VIPS_FOREIGN_CODING_ALL = (VIPS_FOREIGN_CODING_NONE |
+		VIPS_FOREIGN_CODING_LABQ |
+		VIPS_FOREIGN_CODING_RAD)
 } VipsForeignCoding;
-
-/**
- * VIPS_FOREIGN_KEEP_ALL_MASK:
- *
- * A mask for all [flags@ForeignKeep] bits.
- */
-#define VIPS_FOREIGN_KEEP_ALL_MASK \
-	(VIPS_FOREIGN_KEEP_EXIF | \
-		VIPS_FOREIGN_KEEP_XMP | \
-		VIPS_FOREIGN_KEEP_IPTC | \
-		VIPS_FOREIGN_KEEP_ICC | \
-		VIPS_FOREIGN_KEEP_OTHER | \
-		VIPS_FOREIGN_KEEP_GAINMAP)
 
 /**
  * VipsForeignKeep:
@@ -412,7 +377,12 @@ typedef enum /*< flags >*/ {
 	VIPS_FOREIGN_KEEP_OTHER = 1 << 4,
 	VIPS_FOREIGN_KEEP_GAINMAP = 1 << 5,
 
-	VIPS_FOREIGN_KEEP_ALL = VIPS_FOREIGN_KEEP_ALL_MASK
+	VIPS_FOREIGN_KEEP_ALL = (VIPS_FOREIGN_KEEP_EXIF |
+		VIPS_FOREIGN_KEEP_XMP |
+		VIPS_FOREIGN_KEEP_IPTC |
+		VIPS_FOREIGN_KEEP_ICC |
+		VIPS_FOREIGN_KEEP_OTHER |
+		VIPS_FOREIGN_KEEP_GAINMAP)
 } VipsForeignKeep;
 
 typedef struct _VipsForeignSave {
@@ -843,25 +813,6 @@ int vips_ppmsave(VipsImage *in, const char *filename, ...)
 	G_GNUC_NULL_TERMINATED;
 VIPS_API
 int vips_ppmsave_target(VipsImage *in, VipsTarget *target, ...)
-	G_GNUC_NULL_TERMINATED;
-
-VIPS_API
-int vips_qoiload(const char *filename, VipsImage **out, ...)
-	G_GNUC_NULL_TERMINATED;
-VIPS_API
-int vips_qoiload_buffer(void *buf, size_t len, VipsImage **out, ...)
-	G_GNUC_NULL_TERMINATED;
-VIPS_API
-int vips_qoiload_source(VipsSource *source, VipsImage **out, ...)
-	G_GNUC_NULL_TERMINATED;
-VIPS_API
-int vips_qoisave(VipsImage *in, const char *filename, ...)
-	G_GNUC_NULL_TERMINATED;
-VIPS_API
-int vips_qoisave_buffer(VipsImage *in, void **buf, size_t *len, ...)
-	G_GNUC_NULL_TERMINATED;
-VIPS_API
-int vips_qoisave_target(VipsImage *in, VipsTarget *target, ...)
 	G_GNUC_NULL_TERMINATED;
 
 VIPS_API

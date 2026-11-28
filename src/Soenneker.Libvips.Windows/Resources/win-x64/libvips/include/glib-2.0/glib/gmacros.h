@@ -10,7 +10,7 @@
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	 See the GNU
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
@@ -34,6 +34,8 @@
 #if !defined (__GLIB_H_INSIDE__) && !defined (GLIB_COMPILATION)
 #error "Only <glib.h> can be included directly."
 #endif
+
+#include <errno.h>
 
 /* We include stddef.h to get the system's definition of NULL
  */
@@ -753,19 +755,19 @@
 #define G_GNUC_BEGIN_IGNORE_DEPRECATIONS                \
   _Pragma ("warning (push)")                            \
   _Pragma ("warning (disable:1478)")
-#define G_GNUC_END_IGNORE_DEPRECATIONS			\
+#define G_GNUC_END_IGNORE_DEPRECATIONS                  \
   _Pragma ("warning (pop)")
 #elif G_GNUC_CHECK_VERSION(4, 6)
-#define G_GNUC_BEGIN_IGNORE_DEPRECATIONS		\
-  _Pragma ("GCC diagnostic push")			\
+#define G_GNUC_BEGIN_IGNORE_DEPRECATIONS                \
+  _Pragma ("GCC diagnostic push")                       \
   _Pragma ("GCC diagnostic ignored \"-Wdeprecated-declarations\"")
-#define G_GNUC_END_IGNORE_DEPRECATIONS			\
+#define G_GNUC_END_IGNORE_DEPRECATIONS                  \
   _Pragma ("GCC diagnostic pop")
 #elif defined (_MSC_VER) && (_MSC_VER >= 1500) && !defined (__clang__)
-#define G_GNUC_BEGIN_IGNORE_DEPRECATIONS		\
+#define G_GNUC_BEGIN_IGNORE_DEPRECATIONS                \
   __pragma (warning (push))  \
   __pragma (warning (disable : 4996))
-#define G_GNUC_END_IGNORE_DEPRECATIONS			\
+#define G_GNUC_END_IGNORE_DEPRECATIONS                  \
   __pragma (warning (pop))
 #elif defined (__clang__)
 #define G_GNUC_BEGIN_IGNORE_DEPRECATIONS \
@@ -896,8 +898,8 @@
 #define G_ANALYZER_NORETURN
 #endif
 
-#define G_STRINGIFY(macro_or_string)	G_STRINGIFY_ARG (macro_or_string)
-#define	G_STRINGIFY_ARG(contents)	#contents
+#define G_STRINGIFY(macro_or_string)    G_STRINGIFY_ARG (macro_or_string)
+#define G_STRINGIFY_ARG(contents)       #contents
 
 #define G_PASTE_ARGS(identifier1,identifier2) identifier1 ## identifier2
 #define G_PASTE(identifier1,identifier2)      G_PASTE_ARGS (identifier1, identifier2)
@@ -923,9 +925,9 @@
 
 /* Provide a string identifying the current code position */
 #if defined (__GNUC__) && (__GNUC__ < 3) && !defined (G_CXX_STD_VERSION)
-#define G_STRLOC	__FILE__ ":" G_STRINGIFY (__LINE__) ":" __PRETTY_FUNCTION__ "()"
+#define G_STRLOC        __FILE__ ":" G_STRINGIFY (__LINE__) ":" __PRETTY_FUNCTION__ "()"
 #else
-#define G_STRLOC	__FILE__ ":" G_STRINGIFY (__LINE__)
+#define G_STRLOC        __FILE__ ":" G_STRINGIFY (__LINE__)
 #endif
 
 /* Provide a string identifying the current function, non-concatenatable */
@@ -963,24 +965,24 @@
 #  endif /* G_CXX_STD_CHECK_VERSION (11) */
 #endif
 
-#ifndef	FALSE
-#define	FALSE	(0)
+#ifndef FALSE
+#define FALSE   (0)
 #endif
 
-#ifndef	TRUE
-#define	TRUE	(!FALSE)
+#ifndef TRUE
+#define TRUE    (!FALSE)
 #endif
 
-#undef	MAX
+#undef  MAX
 #define MAX(a, b)  (((a) > (b)) ? (a) : (b))
 
-#undef	MIN
+#undef  MIN
 #define MIN(a, b)  (((a) < (b)) ? (a) : (b))
 
-#undef	ABS
-#define ABS(a)	   (((a) < 0) ? -(a) : (a))
+#undef  ABS
+#define ABS(a)     (((a) < 0) ? -(a) : (a))
 
-#undef	CLAMP
+#undef  CLAMP
 #define CLAMP(x, low, high)  (((x) > (high)) ? (high) : (((x) < (low)) ? (low) : (x)))
 
 #define G_APPROX_VALUE(a, b, epsilon) \
@@ -990,12 +992,12 @@
  * as such; using this with a dynamically allocated array will give
  * incorrect results.
  */
-#define G_N_ELEMENTS(arr)		(sizeof (arr) / sizeof ((arr)[0]))
+#define G_N_ELEMENTS(arr)               (sizeof (arr) / sizeof ((arr)[0]))
 
 /* Macros by analogy to GINT_TO_POINTER, GPOINTER_TO_INT
  */
-#define GPOINTER_TO_SIZE(p)	((gsize) (p))
-#define GSIZE_TO_POINTER(s)	((gpointer) (guintptr) (gsize) (s))
+#define GPOINTER_TO_SIZE(p)     ((gsize) (p))
+#define GSIZE_TO_POINTER(s)     ((gpointer) (guintptr) (gsize) (s))
 
 /* Provide convenience macros for handling structure
  * fields through their offsets.
@@ -1005,7 +1007,7 @@
 #define G_STRUCT_OFFSET(struct_type, member) \
       ((glong) offsetof (struct_type, member))
 #else
-#define G_STRUCT_OFFSET(struct_type, member)	\
+#define G_STRUCT_OFFSET(struct_type, member)    \
       ((glong) ((guint8*) &((struct_type*) 0)->member))
 #endif
 
@@ -1372,7 +1374,7 @@
 
 #ifndef __GI_SCANNER__
 
-#if g_macro__has_attribute(cleanup)
+#if g_macro__has_attribute(cleanup) && !defined (G_DISABLE_CLEANUP)
 
 /* these macros are private; note that gstdio.h also uses _GLIB_CLEANUP */
 #define _GLIB_AUTOPTR_FUNC_NAME(TypeName) glib_autoptr_cleanup_##TypeName
@@ -1428,7 +1430,7 @@
 #define g_auto(TypeName) _GLIB_CLEANUP(_GLIB_AUTO_FUNC_NAME(TypeName)) TypeName
 #define g_autofree _GLIB_CLEANUP(g_autoptr_cleanup_generic_gfree)
 
-#else /* not GNU C */
+#else /* cleanup is unavailable or disabled */
 /* this (dummy) macro is private */
 #define _GLIB_DEFINE_AUTOPTR_CHAINUP(ModuleObjName, ParentName)
 
@@ -1438,7 +1440,7 @@
 #define G_DEFINE_AUTO_CLEANUP_FREE_FUNC(TypeName, func, none)
 
 /* no declaration of g_auto() or g_autoptr() here */
-#endif /* __GNUC__ */
+#endif /* cleanup is unavailable or disabled */
 
 #else
 
@@ -1465,5 +1467,60 @@
 #define G_SIZEOF_MEMBER(struct_type, member) \
     GLIB_AVAILABLE_MACRO_IN_2_64 \
     sizeof (((struct_type *) 0)->member)
+
+/**
+ * G_SAVE_ERRNO:
+ * @var: A variable name, traditionally `errsv`
+ *
+ * Helper to save and restore `errno`.
+ *
+ * This macro declares a variable named @var,
+ * and initializes it from `errno`.
+ * When control flow leaves the enclosing scope,
+ * the saved value is stored back into `errno`.
+ * This is convenient to use when handling an error using functions that
+ * could overwrite ("clobber") the value of `errno`,
+ * such as anything that might allocate memory:
+ *
+ * |[
+ * if (g_unlink (path) < 0)
+ *   {
+ *     G_SAVE_ERRNO (errsv);
+ *     g_autofree char *details = get_more_details ();
+ *
+ *     g_info ("could not delete %s (%s): %s",
+ *             path, details, g_strerror (errsv));
+ *   }
+ *
+ * // now errno is as set by g_unlink(), even if get_more_details()
+ * // or g_info() temporarily changed it
+ * ]|
+ *
+ * This feature is only supported on GCC and clang.  This macro is not
+ * defined on other compilers and should not be used in programs that
+ * are intended to be portable to those compilers.
+ *
+ * Since: 2.92
+ */
+
+/* G_SAVE_ERRNO should be defined on the same compilers where g_auto is.
+ * This avoids duplicating the feature-detection here. */
+#ifdef g_auto
+
+#ifndef __GTK_DOC_IGNORE__
+static inline void
+_g_saved_errno_restore (int *errsv_p)
+{
+  errno = *errsv_p;
+}
+typedef int _g_saved_errno;
+G_DEFINE_AUTO_CLEANUP_CLEAR_FUNC (_g_saved_errno, _g_saved_errno_restore)
+#endif
+
+#define G_SAVE_ERRNO(var)      \
+  GLIB_AVAILABLE_MACRO_IN_2_92 \
+  g_auto(_g_saved_errno) G_GNUC_UNUSED var = errno
+
+#endif /* defined(g_auto) */
 
 #endif /* __G_MACROS_H__ */

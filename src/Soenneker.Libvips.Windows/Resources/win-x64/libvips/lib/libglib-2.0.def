@@ -478,6 +478,7 @@ g_get_monotonic_time_ns
 g_get_num_processors
 g_get_os_info
 g_get_prgname
+g_get_process_executable_dir
 g_get_real_name
 g_get_real_time
 g_get_system_config_dirs

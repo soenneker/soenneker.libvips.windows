@@ -41,15 +41,6 @@ GType vips_intent_get_type(void);
 VIPS_API
 GType vips_pcs_get_type(void);
 #define VIPS_TYPE_PCS (vips_pcs_get_type())
-VIPS_API
-GType vips_cicp_colour_primaries_get_type(void);
-#define VIPS_TYPE_CICP_COLOUR_PRIMARIES (vips_cicp_colour_primaries_get_type())
-VIPS_API
-GType vips_cicp_transfer_characteristics_get_type(void);
-#define VIPS_TYPE_CICP_TRANSFER_CHARACTERISTICS (vips_cicp_transfer_characteristics_get_type())
-VIPS_API
-GType vips_cicp_matrix_coefficients_get_type(void);
-#define VIPS_TYPE_CICP_MATRIX_COEFFICIENTS (vips_cicp_matrix_coefficients_get_type())
 /* enumerations from "conversion.h" */
 VIPS_API
 GType vips_extend_get_type(void);

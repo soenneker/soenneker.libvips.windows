@@ -8,7 +8,6 @@ EXPORTS
 VipsArrayDouble_unref
 VipsArrayImage_unref
 _vips__argument_id DATA
-vips_CICP2scRGB
 vips_CMC2LCh
 vips_CMYK2XYZ
 vips_HSV2sRGB
@@ -26,7 +25,6 @@ vips_LabS2LabQ
 vips_Oklab2Oklch
 vips_Oklab2XYZ
 vips_Oklch2Oklab
-vips_UHDR2scRGB
 vips_XYZ2CMYK
 vips_XYZ2Lab
 vips_XYZ2Oklab
@@ -37,14 +35,8 @@ vips__argument_get_instance
 vips__exif_parse
 vips__file_read
 vips__filename_split8
-vips__find_rightmost_brackets
 vips__get_bytes
 vips__has_extension_block
-vips__image_get_cicp
-vips__image_get_clli
-vips__image_is_cicp
-vips__image_is_cicp_hdr
-vips__image_is_clli
 vips__open
 vips__premultiplied_bgra2rgba
 vips__read_extension_block
@@ -56,10 +48,6 @@ vips__substitute
 vips__substitutec
 vips__temp_name
 vips__token_get
-vips__token_must
-vips__token_need
-vips__token_segment
-vips__token_segment_need
 vips__vector_to_ink
 vips__win32_terminate
 vips__worker_cond_wait
@@ -232,7 +220,6 @@ vips_check_coding_known
 vips_check_coding_noneorlabq
 vips_check_coding_same
 vips_check_complex
-vips_check_draw
 vips_check_format
 vips_check_format_same
 vips_check_hist
@@ -252,9 +239,6 @@ vips_check_uintorf
 vips_check_uncoded
 vips_check_vector
 vips_check_vector_length
-vips_cicp_colour_primaries_get_type
-vips_cicp_matrix_coefficients_get_type
-vips_cicp_transfer_characteristics_get_type
 vips_clamp
 vips_class_find
 vips_class_map_all
@@ -492,7 +476,6 @@ vips_icc_transform
 vips_identity
 vips_ifthenelse
 vips_imag
-vips_image_copy_draw
 vips_image_copy_memory
 vips_image_decode
 vips_image_decode_predict
@@ -507,7 +490,6 @@ vips_image_get_array_int
 vips_image_get_as_string
 vips_image_get_bands
 vips_image_get_blob
-vips_image_get_blob_value
 vips_image_get_coding
 vips_image_get_concurrency
 vips_image_get_data
@@ -522,7 +504,6 @@ vips_image_get_history
 vips_image_get_image
 vips_image_get_int
 vips_image_get_interpretation
-vips_image_get_loop
 vips_image_get_mode
 vips_image_get_n_pages
 vips_image_get_n_subifds
@@ -786,7 +767,6 @@ vips_pdfload
 vips_pdfload_buffer
 vips_pdfload_source
 vips_percent
-vips_percent_lum
 vips_perlin
 vips_phasecor
 vips_pipe_read_limit_set
@@ -814,12 +794,6 @@ vips_profile_set
 vips_progress_set
 vips_project
 vips_pythagoras
-vips_qoiload
-vips_qoiload_buffer
-vips_qoiload_source
-vips_qoisave
-vips_qoisave_buffer
-vips_qoisave_target
 vips_quadratic
 vips_rad2float
 vips_radload
@@ -854,7 +828,6 @@ vips_ref_string_get
 vips_ref_string_get_type
 vips_ref_string_new
 vips_region_black
-vips_region_blend_over
 vips_region_buffer
 vips_region_copy
 vips_region_equalsregion
@@ -915,7 +888,6 @@ vips_sbuf_skip_whitespace
 vips_sbuf_unbuffer
 vips_sbuf_ungetc
 vips_scRGB2BW
-vips_scRGB2CICP
 vips_scRGB2XYZ
 vips_scRGB2sRGB
 vips_scale
@@ -1063,8 +1035,6 @@ vips_uhdrload_source
 vips_uhdrsave
 vips_uhdrsave_buffer
 vips_uhdrsave_target
-vips_unlimited_get
-vips_unlimited_set
 vips_unpremultiply
 vips_value_get_area
 vips_value_get_array

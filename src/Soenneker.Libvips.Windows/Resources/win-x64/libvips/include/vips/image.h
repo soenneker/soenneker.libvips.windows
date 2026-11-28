@@ -143,7 +143,8 @@ typedef enum {
 typedef enum {
 	VIPS_ACCESS_RANDOM,
 	VIPS_ACCESS_SEQUENTIAL,
-	VIPS_ACCESS_SEQUENTIAL_UNBUFFERED VIPS_DEPRECATED_ENUMERATOR_IN_8_18_FOR(VIPS_ACCESS_SEQUENTIAL),
+	VIPS_ACCESS_SEQUENTIAL_UNBUFFERED
+		VIPS_DEPRECATED_ENUMERATOR_FOR(VIPS_ACCESS_SEQUENTIAL),
 	VIPS_ACCESS_LAST	/*< skip >*/
 } VipsAccess;
 
@@ -226,7 +227,7 @@ struct _VipsImage {
 	char *Hist;		/* don't use, see vips_image_get_history() */
 	char *filename; /* pointer to copy of filename */
 	VipsPel *data;	/* start of image data for WIO */
-	int kill;		/* (atomic) - set to non-zero to block eval */
+	int kill;		/* set to non-zero to block eval */
 
 	/* Everything below this private and only used internally by
 	 * VipsImage.
@@ -549,8 +550,6 @@ gboolean vips_image_hasalpha(VipsImage *image);
 
 VIPS_API
 VipsImage *vips_image_copy_memory(VipsImage *image);
-VIPS_API
-VipsImage *vips_image_copy_draw(VipsImage *image);
 VIPS_API
 int vips_image_wio_input(VipsImage *image);
 VIPS_API

@@ -176,7 +176,7 @@ struct _GTypeModuleClass
 static void     type_name##_init              (TypeName        *self); \
 static void     type_name##_class_init        (TypeName##Class *klass); \
 static void     type_name##_class_finalize    (TypeName##Class *klass); \
-static gpointer type_name##_parent_class = NULL; \
+G_GNUC_UNUSED static gpointer type_name##_parent_class = NULL; \
 static GType    type_name##_type_id = 0; \
 static gint     TypeName##_private_offset; \
 \
@@ -211,10 +211,10 @@ type_name##_register_type (GTypeModule *type_module) \
     NULL    /* value_table */ \
   }; \
   type_name##_type_id = g_type_module_register_type (type_module, \
-						     TYPE_PARENT, \
-						     #TypeName, \
-						     &g_define_type_info, \
-						     (GTypeFlags) flags); \
+                                                     TYPE_PARENT, \
+                                                     #TypeName, \
+                                                     &g_define_type_info, \
+                                                     (GTypeFlags) flags); \
   g_define_type_id = type_name##_type_id; \
   { CODE ; } \
 }
